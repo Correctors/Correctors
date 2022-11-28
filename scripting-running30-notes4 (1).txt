@@ -1,0 +1,944 @@
+Automating IT processes/workloads with Scripting
+==================================================
+Automating IT:
+   processes
+   workloads 
+   jobs    
+   tasks  
+
+Computer/system:
+  1. Bare Metal/ HardWare components 
+      RAM - memory 
+      Cpu 
+      ROM - hard disk / volume / storage 
+      MOUSE
+      KEYBOARD
+
+  2.   software components 
+         operating system = OS
+            Windows OS
+            MacOS 
+            Linux  OS  
+            Solaris  :
+      other softwares :
+         shell 
+         Sublime text
+         monaXterm / gitbash / telegram /    
+         Microsoft word/Excell  
+Examples of workloads:
+  fileMGT/userMGT / packageMGT/ securityMGT / systemMGT / etc.
+
+Workload management on Computer systems [LINUX OS] :
+    GUI = Graphical user interface 
+    CLI = command line interface
+     Linux OS = Linux servers/systems
+      ls  = list the content of a directory
+      touch test.txt
+    scripts =    
+shell: A shell is an interpreter that 
+        interpretes commands to the OS. 
+
+             LinuxOS  WindowsOS       MacOS   
+             bash     powershell      bash/zshell  
+commands      LS        LS              LS  
+
+echo $SHELL  
+
+cat /etc/shells  
+  Bourne  shell = sh  
+  Bourne again shell = bash
+
+[simon@demo ~]$ cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+/bin/tcsh
+/bin/csh  
+
+script:
+A shell script is a collection of commands in a file.
+
+GUI with minimum Automation  - 5%    
+Commands with Automation     - 40% 
+scripts with more Automation - 80% 
+
+Shell-scripts has '.sc' or '.sh' extensions 
+Naming conventions best practices:
+ bash Shell-scripts  = script.sh/sc [hello.sh] 
+ ls = hello.sh  app.java     
+  deploy.sh  = Shell-script
+  test.txt   = text file 
+  app.sc     = Shell-script
+  app.java   = java code 
+  monitor.py = python code/script 
+  app.yaml   = playbook or manifest file  
+
+script1.sh:
+==========
+#!/bin/bash    
+echo "Welcome to Landmark Technologies"
+echo "Congratulations, you graduated with jobs"
+echo "You and yours are now millionaires"
+mkdir billions 
+touch billions/millionaires  
+echo "Bello" >> billions/millionaires  
+
+what is the difference between a command and a script
+
+How to run a bash shell script in Linux:
+  scriptName 
+./scriptName   
+[simon@demo ~]$ ./script1.sh
+-bash: ./script1.sh: Permission denied
+The script should have executable Permission
+   to run 
+-rw-rw-r-- 1 simon simon 232 script1.sh
+
+Assign executable Permission:
+  chmod +x fileName   
+  chmod +x script1.sh
+  chmod 775 fileName 
+  chmod 700 fileName 
+-rwx rwx r-x 1 simon simon script1.sh
+  7  7    5  
+
+  vi hello.sh 
+  #!/bin/bash
+  echo "Welcome to landmark Technologies"
+  echo "Your are now a millionaire"
+  echo "Today is: "
+  date 
+  echo scripting is automation
+  echo "Thanks for coming"
+[simon@demo ~]$ sh hello.sh
+Welcome to landmark Technologies
+Your are now a millionaire
+Today is:
+Sun Nov  6 21:04:31 UTC 2022
+scripting is automation
+Thanks for choosing landmark Technologies
+
+Scripting or automation langauges :
+  1. Bash Shell Scripting
+  2. Python 
+  3. Groovy  (Jenkins)
+  3. Ruby
+  4. Yaml  
+      (k8s, Ansible, CloudFormation)
+  5. JSon 
+  6. HCL - Terraform  
+  7. XML = 
+  8. html 
+  9. go/golang  
+
+Tasks:
+  TK-deploy-00123 
+  write a simple script to deploy applications 
+
+1. Creating deployment directory  
+2. creating app.java file  
+3. assigning full Permission to app.java file
+4. changing ownership of app.java file 
+9. migrate the file to the app server   
+
+#!/bin/bash  
+deploy.sh
+echo "deployment in progress"
+mkdir deploy   
+touch deploy/app.java 
+echo "Welcome to Tesla" >> deploy/app.java  
+chmod 777 deploy/app.java
+sudo chown obi  deploy/app.java 
+scp  
+
+-rwxrwxrwx 1 obi simon deploy/app.java
+
+How to make your codes/scripts:
+  easily readable/unserstandable by adding 
+  notes/comments/explanations      
+
+comment: metadata = data about data 
+  Explains what the script is achieving 
+  Use to eplain the script file
+
+slc.sh 
+echo "Please read the notes before execution"
+# This script is for server monitoring
+# Run the script ONLY in Linux servers
+# Written By Simon Legah Nov 2022
+# Copyright C Landmark Technologies
+date
+echo "You succeeded"
+USE =#! shebang for BEST PRACTICE
+
+mlc.sh 
+#!/bin/sh 
+echo "Multi-line comments starts"
+
+<<boy
+Author: Simon 
+This is a simple script
+This script will work in Linux OS
+COPYRIGHT: Landmark Technologies
+echo Jesus is Lord 
+date
+boy
+echo "Multi-line comments ends" 
+date 
+
+single line comments = 99% 
+multi line comments  = 1%  
+===
+
+Who are the comments meant for?
+  1. It make your script/code to be understood by 
+     you and others 
+  2. It make your script/code easily reusable in the future
+  3. Facilitate/ease troubleshooting and debugging
+  4. comments are Good for teams:
+        6. developers writing codes/scripts 
+        1. Scrum master 
+        3. DevOps Engineers 
+        1. DevOps Security Engineer 
+  can you write your comments first and then 
+  under it write your script? or does it have to 
+  come between the scripts? Depends on you.  
+
+
+We have Linux Servers in AWS
+We remotely access this servers to run workloads 
+  ssh protocol  is required  
+  ssh service must be running in the server  
+  we need an ssh-client like mobaXterm/terminal/putty  
+  We need the server address [ipaddress/hostname/dns] 
+     99.79.62.181     
+    Domain name records = DNS  
+    A records  
+        mylandmarktech.com  --- 99.79.62.181 
+  we need a valid user[ec2-user/simon/landmark] :
+     ssh userName@ipaddress  
+     ssh -i key.pem userName@ipaddress 
+     ssh simon@99.79.60.181
+     ssh simon@mylandmarktech.com 
+  we authentication [password / sshkeys]  
+
+1. ticket001  
+   Create an ssh and forward for us to grant you access  
+   ssh-keygen  
+
+Use scripts to run workloads
+===========================
+variables:
+variables are defined by the user or the system 
+we can refer/call a variable with $variable   
+echo $SHELL   
+city=London  
+name=LandmarkTechnologies   
+
+echo $city  = London  
+echo $name  = LandmarkTechnologies
+echo $SHELL = /bin/bash  
+
+
+User defined variables   = UDV  : 
+  Are defined/created by some admins  
+
+system defined variables = SDV  :
+  Are variables that comes with the OS  
+  env = List all system defined variables  
+env = 
+  HOSTNAME=demo
+  SHELL=/bin/bash
+  TERM=xterm
+  HISTSIZE=1000
+  USER=simon
+  PWD=/home/simon
+  LANG=en_US.UTF-8
+  HISTCONTROL=ignoredups
+  SHLVL=1
+  HOME=/home/simon
+  LOGNAME=simon
+
+echo $HISTSIZE
+echo $LOGNAME
+echo $USER 
+echo $PWD   
+
+export HISTSIZE=200   
+  = changes effected for a session 
+ ssh simon@99.79.62.181  
+  .bashrc
+  .bash_profile  
+
+source .bashrc  
+
+export HISTSIZE=80   = changes will affect ONLY the current session 
+.bashrc and .bash_profile
+vi .bashrc = enforce changes for a specific user
+vi .bashrc
+  export HISTSIZE=2000 
+  source .bashrc 
+  source .bash_profile  
+
+  /etc/profile will enforce the changes to all users  
+ ONLY the root user can modify this /etc/profile file 
+ sudo vi /etc/profile  
+ export HISTSIZE=1500 
+ source /etc/profile
+
+udv.sh 
+=======
+name=LandmarkTechnologies    
+city=Toronto 
+echo Weelcome to $name. 
+echo $name is located in $city   
+
+udv2.sh   
+======
+echo "Please enter your name"
+read name   
+echo "$name, welcome to TB Bank"
+echo "Please enter your pin" 
+read pin  
+echo "The pin you entered is $pin" 
+echo "$name you are authenticated"
+
+udv3.sh  
+=======
+echo "Please enter your name"
+read name   
+echo "$name, welcome to TB Bank"
+echo "Please enter your pin" 
+read -s pin  
+echo "$name you entered an invalid pin"
+
+udv4.sh  
+echo "Welcome to Wellfargo Online Banking"
+echo "Please enter your username and continue"
+read username  
+echo "Please enter your one-time password"
+read -s password 
+echo "change your password"
+read newpassword  
+echo "Re-enter your password"
+read newpassword 
+echo "your password is changed successfully"
+---
+
+Ticket00124:
+  Create a script for userMGT  
+---
+create-user.sh 
+#This script will create and manage users
+#in redhat and centos Linux servers
+echo "enter your preferred username"
+read username  
+sudo adduser $username 
+echo $username account is created successfully 
+echo "Please enter your preferred password"
+sudo passwd $username  
+
+UserMGT 
+=====
+  ADMINS  
+
+UserMGT.sh  
+<<mm
+This script will create and manage users
+     in redhat and centos Linux servers
+Run only as root user or users with sudo access
+mm
+echo Please enter your username
+read newUser
+sudo adduser $newUser
+echo Please enter your password
+read -s password
+echo "$password" | sudo passwd "$newUser" --stdin
+echo Congratlations your username is $newUser
+# verify if the user account was created
+id  $newUser
+grep $newUser  /etc/passwd
+tail -3 /etc/passwd
+Explain you experience in automation/scripting
+
+
+user.sh
+======= 
+echo "creating user Elvis" 
+sudo adduser elvis  
+sudo passwd  elvis  
+sudo groupadd managers  
+sudo usermod managers elvis  
+
+vi user.sh  
+========
+user.sh
+=======  
+echo "creating user chidi" 
+sudo adduser chidi  
+sudo passwd  chidi  
+sudo groupadd managers  
+sudo usermod managers chidi  
+---
+echo "creating a newuser account" 
+echo "enter the new username's name"
+read name  
+sudo adduser $name 
+sudo usermod managers $name
+sudo passwd  $name      
+
+sh user.sh  
+
+export  k8s_name=class30.local  
+
+city=London 
+lastname=Legah   
+cpy=LandmarkTechnologies  
+
+cpy=LandmarkTechnologies
+echo "Enter your name"
+read name
+echo "enter your city"
+read city
+echo $name, works for $cpy in $city.
+
+
+Lagos  / Dallas  / Accra  
+======================= $72,000
+
+Command Line arguments: CLA  
+=======================
+db_backup.sh 
+vi db_backup.sh  
+# This script will backup mySQL data bases
+# please specify the environment as an argument
+# Please specify the server and your details as arguments
+
+echo data base ready for backup
+echo backup in progress
+sleep 5
+echo backup completed
+ echo $? 
+ echo $$ 
+ echo $#
+ echo $* 
+echo the scriptName is $0
+echo The first argument is $1
+echo The third argument is $3
+echo $3 
+
+    $$ $? $# S*
+ The first argument is   $1 
+ The 2nd argument is     $2   
+ The third argument is   $3   
+ The 10th argument is  ${10}    
+ the scriptName is     $0 
+ The number arguments are $# 
+ The list of the arguments are $*
+ The list of the arguments are $@
+ The process id is  $$
+ The status of your last run command is $?  
+
+1. sh backup.sh   
+2. sh backup.sh dev db1 simon    
+
+[simon@demo ~]$ cat db_backup.sh
+#!/bin/sh
+# This script will backup mySQL data bases
+# please specify the environment as an argument
+# Please specify the server and your details as arguments
+# sh scriptname.sh  or  sh sdv.sh
+# sh scriptname.sh dev dbserver1 simon
+# sh scriptname.sh arg1 arg2 arg3 arg4
+echo db backup in progress
+mkdir /tmp/backup
+cp -r * /tmp/backup
+sleep  5
+echo backup completed
+echo the scriptName is $0
+echo The first argument is $1
+echo The third argument is $3
+echo The number arguments are $#
+echo The list of the arguments are $*
+echo The list of the arguments are $@
+echo The process id is  $$
+Date
+echo The status of your last run command is $?
+[simon@demo ~]$ echo $?
+0
+[simon@demo ~]$
+[simon@demo ~]$ Date
+-bash: Date: command not found
+[simon@demo ~]$ echo $?
+127
+[simon@demo ~]$ cat ddd
+cat: ddd: No such file or directory
+[simon@demo ~]$ echo $?
+1
+[simon@demo ~]$
+[simon@demo ~]$ expr 9 *  5
+expr: syntax error
+[simon@demo ~]$ echo $?
+2
+
+echo $? should either be:
+  == 0 (suceess)
+  != 0 [1 - 127] (something is wrong)
+IQ: What is the significance of $? is scripting
+Gives The status of your last run command
+
+sao.sh 
+expr 9 - 4  
+expr 9 + 4 
+expr 9 \* 4 
+expr 9 / 4
+expr 9 % 4 
+
+sao2.sh 
+echo welcome to simple arithmetic operations
+echo please enter the first number
+read num1
+echo please enter the second number
+read num2
+echo  The total is =
+expr $num1 + $num2
+echo  The difference is =
+expr $num1 - $num2
+
+echo welcome to simple arithmetic operations
+echo please enter the first number
+read num1
+echo please enter the second number
+read num2
+echo  The total is `expr $num1 + $num2`
+echo  The difference is `expr $num1 - $num2`
+num21=50
+num22=20
+echo  The total is `expr $num21 + $num22`
+echo  The difference is `expr $num21 - $num22`
+echo  The total is
+expr $num21 + $num22 + $num1 + $num2
+echo  The difference is
+expr $num21 - $num22
+
+sales.sh  
+price=3600
+echo "How many of you are taking the course"
+read millionaires
+echo "Your fee total is "  
+expr $millionaires \* $price 
+
+sao3.sh 
+#if (( $# >= 3 ))
+#if [ $# -gt 3 ]
+#if [ $# -lt 3 ]
+if (( $# == 3 ))
+then
+#Number of arguments on the command line.
+echo '$#:' $#
+#Process number of the current process.
+echo '$$:' $$
+#Display the 3rd argument on the command line, from left to right.
+echo '$3:' $3
+#Display the 10th argument on the command line, from left to right.
+echo '${10}:' ${10}
+#Display the name of the current shell or program.
+echo '$0:' $0
+#Display all the arguments on the command line using * symb
+echo '$*:' $*
+#Display all the arguments on the command line using @ symb
+echo '$@:' $@
+date
+echo '$?:' $?
+else
+echo "Please Pass the 3 command line args along with script "
+fi 
+
+      -if (( $# >= 3 ))
+      -if [ $# -gt 3 ]
+      -if [ $# -lt 3 ]
+      4 if (( $# == 3 ))
+
+if (( $# == 3 ))
+then 
+echo "You are authenticated"
+else   
+echo "Pass command with 3 arguments"
+fi  
+
+if (( paid >= 1500 ))
+then 
+echo "You are allowed in class"
+else   
+echo "Pay your fee"
+fi 
+
+if (( paid > 1500 ))
+then 
+echo "You are not allowed in class"
+else   
+echo "welcome to class"
+fi 
+
+---
+Debugging issues:
+  debug.sh with 170 lines   
+  whoami  
+  Date  
+  Pwd  
+  whatis ls  
+  pwd 
+  echo $?
+
+IQ: How do you troubleshoot issues in scripting??
+ run the script in debugging mode  
+   sh -x scriptName   
+
+#! /bin/sh
+#Purpose: Addition of two numbers
+#Author: Landmark Technologies #Date: June 24th 2020
+sum=`expr $1 + $2`
+echo $sum
+echo "$1+$2=`expr $1 + $2`"
+Run the above script as follows.
+#sh -v sum.sh 7 8
+#sh -x sum.sh 7 8
+#sh -n sum.sh 7 8
+#sh -xv sum.sh 7 8
+
+debug3.sh  
+#! /bin/sh
+#Purpose: Multiplication of two numbers
+#Author: Landmark Technologies #Date: June 24th 2020
+echo enter the fee as 1st argument
+echo enter the number of students as 2nd argument
+total=`expr $1 \* $2`
+echo Your group should pay $total USD.
+
+debug4.sh  
+echo Your group is welcome to Landmark
+echo enter the number of persons
+read persons
+echo enter the fee agreed
+read fee
+amount=`expr $persons \* $fee`
+echo Your group will pay $amount USD
+
+IF / else  
+loops  
+
+======================
+
+
+IQ: Write a simple filemgt script
+vi filemgt.sh  
+=====================
+#!/bin /bash  
+# This is a filemgt script  
+# Run this script on Linux server  
+
+
+Debugging problems in scripting  
+===============================
+
+Input output redirection  
+=============================
+Redirect Standard output --   :   
+  sh output.sh 1>log
+  sh scriptName 1>log     
+
+Redirect Standard error  :
+  sh output.sh 2>error
+  sh scriptName 2>error  
+
+Redirect both Standard output/errors:
+  sh scriptName > result.log  2>&1
+  sh output.sh > result.log 2>&1  
+
+
+echo JESUS IS LORD > yes.txt  
+
+tail -5 /etc/passwd   
+tail -5 /etc/passwd > users.txt
+
+echo "This I know" >> yes.txt
+tail -5 /etc/passwd >> users.txt
+  We append/add content to a file 
+
+Redirect replaces content:
+echo "That is the truth" > yes.txt
+
+Append [>>] and Redirect [>]
+USING Scripts for package management:
+====================================
+We can install, remove, updates and upgrade packages in our servers.
+
+examples of packages:
+   nano, tree, vim, httpd, 
+   java, maven, tomcat, jenkins, kubernetes, kubelet, docker
+   etc.  
+
+We can download and install packages using package managers like:
+   yum/dnf          -- centos, redhat
+   apt/apt-get      -- ubuntu, debain
+   chocolatey/choco -- windows OS  
+   brew             --  mac  
+   helm,  -- kubernetes 
+   pip,   -- python 
+   rpm  
+
+We can download and install packages using commands like:
+   wget and curl    
+packageMGT.sh  
+  yum install tree 
+  yum install tree  -y  
+ 
+
+ sudo yum install tree -y 
+ sudo yum install python -y 
+ sudo yum install vim wget -y 
+
+#!/bin/sh
+ # This script will install and start the apache http webServer
+ sudo yum install httpd -y 
+ sudo systemctl start httpd
+ sudo systemctl enable httpd
+ systemctl status httpd
+
+99.79.62.181
+
+sudo -i   
+[root@demo ~]# 
+vi fileMgt.sh
+ sudo mkdir /var/www/html/google
+ sudo mkdir /var/www/html/yahoo
+ sudo mkdir /var/www/html/tesla
+ sudo echo "DevOps-Tesla" >> /var/www/html/tesla/index
+ sudo echo "DevOps-google" >> /var/www/html/google/ind
+ sudo echo "DevOps-yahoo" >> /var/www/html/yahoo/index
+ sudo echo "DevOps is good" >> /var/www/html/index.htm
+
+vi fileMgt.sh
+  mkdir /var/www/html/google
+  mkdir /var/www/html/yahoo
+  mkdir /var/www/html/tesla
+  echo "DevOps-Tesla" >> /var/www/html/tesla/index
+  echo "DevOps-google" >> /var/www/html/google/ind
+  echo "DevOps-yahoo" >> /var/www/html/yahoo/index
+  echo "DevOps is good" >> /var/www/html/index.htm
+[root@demo ~]# sh fileMgt.sh
+
+=========================================
+control commands = conditions:
+==============================
+James 
+Janet 
+Chidi  
+
+Dominion 
+   Create your login password = Admin@123 
+   Credit card comes with a pin = 5079  
+   userName = landmark   
+
+TD Online Banking:
+  database = users     password    card-pin    email  tel  
+             landmark  Admin@123    5079
+
+  echo "please enter your username"
+  read username 
+  if [ $username -e database.sql ] then:
+  echo "continue" 
+  else 
+  echo "sorry you entered an invalid username" 
+
+
+  echo "please enter your username"
+  read username 
+  if [ $username -e database.sql ] then:
+  echo "continue" 
+  echo "please enter your password"
+  echo "sorry you entered an invalid username" 
+
+ATM:
+echo "Please slot in your card"
+echo "Please enter your 4 digit pin"
+read pin  
+
+Equality and inequality:
+  -eq  or  == represent equals to   ( x == y ) or ( x -eq y) or (a == b)
+  -ne  or  != represent not equals to   (x != y or x -ne y)
+  -gt  or  >  represent greater than     (x>y or  x -gt y)
+  -lt  or  <  less than                  ( x<y or x -lt y )
+  -ge  or >=  greater than or equals to
+  -le  or <=   less than  or equals to
+
+Syntax:
+
+if [ condition ]
+then 
+commands     
+else 
+commands 
+fi  
+
+if condition
+then
+Display commands list if condition is true.
+else
+Display commands list if condition is false.
+fi
+
+if-fee.sh
+echo "please enter your name"
+read name
+echo "Please enter the fee amount that you can pay for the course"
+read fee
+if [ $fee >= 3600 ]
+then
+echo "Congratulations $name, your price is accepted"
+echo "Welcome to LandmarkTechnolgy"
+echo "You're a now millionaire"
+else
+echo "Sorry $name you can't be admitted"
+fi
+----
+sales.sh
+# This script is for real estate property sales
+echo "Please enter your bid price for the property"
+read p
+if [ $p -ge 2000 ]
+then
+echo "The price is good for the business"
+echo "Please deliver the product"
+
+else
+echo "sorry we already have better offers."
+echo "Please give a higher offer"
+fi
+
+# This script will authenticated a client with their valid pin
+echo "Please enter your pin"
+read pin
+if [ $pin -eq 5470 ]
+then
+echo 'You entered a valid pin'
+echo 'Welcome to TD, how can we help you today'
+else
+echo "Sorry, The pin you entered is invalid. Please contact a branch."
+fi
+
+
+if4.sh 
+#!/bin/bash
+echo "Please enter a number"
+read num1
+echo "Please enter another number"
+read num2
+if [ $num1 == $num2 ]
+then
+echo "$num1 is equals to $num2"
+else
+echo "$num1 is not equal to $num2"
+fi
+
+=======
+# determine 1st class students
+echo 'ENTER YOUR gpa'
+read gpa   
+if [ $gpa -ge 3.6 ]
+then 
+echo "Congratulations,"
+echo "You are a 1st class student"
+else  
+echo "You can do better"
+fi  
+
+if5.sh   
+#!/bin/bash
+# realtor selling a property
+# realtor selling a property
+echo "enter the offer price of customer1"
+read price1
+echo "enter the offer price of customer2"
+read price2
+if [ $price1 -gt $price2 ]
+then
+echo "$price1 is greater than $price2"
+echo "Sell to customer1"
+elif [  $price1 -lt $price2 ]
+then
+echo "$price1 is less than $price2"
+echo "Sell to customer2 who's offering a better deal"
+else
+echo "$price1 is equal to $price2"
+echo "Request for an increase a choose the best possible offer"
+fi
+
+
+----
+if (( $p1 -gt $p2 & $p1 -gt $p3   ))
+then
+echo sell to customer1
+
+elif (( $p2 -gt $p2  ))
+then
+echo sell to customer2
+
+---
+if6.sh  
+=====
+if (( $# == 3 ))
+then 
+echo "scripting i good"
+echo "Always run this script with 3 arguments"
+else 
+echo "Please enter  3 arguments to run this script"
+fi 
+
+if [ $# == 3 ]
+then 
+echo "scripting i good"
+echo "Always run this script with 3 arguments"
+else 
+echo "Please enter  3 arguments to run this script"
+fi 
+
+if [ condition ]
+then 
+command1 
+command2
+elif [ condition ]
+then 
+command1 
+command2
+elif [ condition ]
+then 
+command1 
+command2
+else 
+command1 
+command2
+fi   
+
+
+-----------------------------------------------
+echo "enter username"  
+read p    
+echo "Your username is $p "
+
+echo "Creating a new user"
+if (( uid == 0 ))
+then  
+echo "you have Permission to add users to the server"
+echo "enter the name of the new user"
+read name   
+useradd $name  
+else  
+echo "sorry only the root can run this script"
+fi  
+
+
+
+
+
